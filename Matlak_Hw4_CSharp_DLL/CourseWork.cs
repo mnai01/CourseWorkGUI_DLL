@@ -166,7 +166,7 @@ namespace Matlak_Hw4_Csharp_DLL
             //Multiples weights by the grade avgs, adds all of them up and divides it by 100 to get the avg.
             double TotalGrade = Math.Round((examGradeAvg*examWeights + homeworkGradeAvg*homeworkWeights + quizGradeAvg*quizWeights + labGradesAvg * labWeights) / 100, 2) ;
             Console.WriteLine("Your total Average is: " + TotalGrade);
-            return 0;
+            return TotalGrade;
         }
 
         //****************************************************
