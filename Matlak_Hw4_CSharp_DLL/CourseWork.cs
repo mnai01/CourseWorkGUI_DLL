@@ -91,8 +91,10 @@ namespace Matlak_Hw4_Csharp_DLL
         //****************************************************
         public Submission FindSubmission(String an)
         {
+            // Scans submission 
             foreach (var i in submissions)
             {
+                // If submission.Assignment name matches the parameter provided return it
                 if(i.AssignmentName == an)
                 {
                     return i;
@@ -114,30 +116,41 @@ namespace Matlak_Hw4_Csharp_DLL
             double quizWeights = 0;
             double labWeights = 0;
 
+            // Iterates throught categories
             foreach (var i in categories)
             {
+                // Finds categories with name Exams
                 if (i.Name == "Exams")
                 {
+                    // Sets weight to Percentage found in the list
                     examWeights = i.Percentage;
                     Console.WriteLine(i.Percentage);
-                }else if(i.Name == "Homework")
+
+                }
+                // Finds categories with name Homework
+                else if (i.Name == "Homework")
                 {
+                    // Sets weight to Percentage found in the list
                     homeworkWeights = i.Percentage;
                     Console.WriteLine(i.Percentage);
                 }
+                // Finds categories with name Quizzes
                 else if (i.Name == "Quizzes")
                 {
+                    // Sets weight to Percentage found in the list
                     quizWeights = i.Percentage;
                     Console.WriteLine(i.Percentage);
                 }
+                // Finds categories with name Labs
                 else if (i.Name == "Labs")
                 {
+                    // Sets weight to Percentage found in the list
                     labWeights = i.Percentage;
                     Console.WriteLine(i.Percentage);
                 }
             }
 
-            //Future Plan, could make it way more modular, maybe something with generics?
+            //TODO: could make it way more modular, maybe something with generics?
 
             //Adds up the grades
             double ExamGradesTotal = submissions.Where(i=>i.CategoryName == "Exams").Select(i => i.Grade).Sum();
@@ -148,18 +161,27 @@ namespace Matlak_Hw4_Csharp_DLL
             //displays avg
             Console.WriteLine("Exam Average: " + examGradeAvg);
 
+            // Add homework grades for a total
             double homeWorkGradesTotal = submissions.Where(i => i.CategoryName == "Homework").Select(i => i.Grade).Sum();
+            // counts number of homeworks
             int numberOfHomeWorks = submissions.Where(i => i.CategoryName == "Homework").Count();
+            // divides Number of homeworks from total homeworks grades to get avgerage
             double homeworkGradeAvg = Math.Round(homeWorkGradesTotal / numberOfHomeWorks);
             Console.WriteLine("Homework Average: " + homeworkGradeAvg);
 
+            // Add quiz grades for a total
             double quizGradesTotal = submissions.Where(i => i.CategoryName == "Quizzes").Select(i => i.Grade).Sum();
+            // Add number of quizzes
             int numberOfQuiz = submissions.Where(i => i.CategoryName == "Quizzes").Count();
+            // divides Number of quizzes from total quizzes grades to get avgerage
             double quizGradeAvg = Math.Round(quizGradesTotal / numberOfQuiz, 2);
             Console.WriteLine("Quizzes Average: " + quizGradeAvg);
-
+           
+            // Add labs grades for a total
             double labGradesTotal = submissions.Where(i => i.CategoryName == "Labs").Select(i => i.Grade).Sum();
+            // Add number of labs
             int numberOfLabs = submissions.Where(i => i.CategoryName == "Labs").Count();
+            // divides Number of labs from total labs grades to get avgerage
             double labGradesAvg = Math.Round(labGradesTotal / numberOfLabs, 2);
             Console.WriteLine("Labs Average: " + labGradesAvg);
 
